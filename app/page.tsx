@@ -1,65 +1,89 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { Suspense } from 'react';
+import { createClient } from '@/app/_lib/supabase/server';
+import { getCategories } from '@/app/_lib/queries/courses';
+import { CourseList } from '@/app/_components/course-list';
+import { CourseGridSkeleton } from '@/app/_components/course-card-skeleton';
+import { SearchBar } from '@/app/_components/search-bar';
+import { CategoryFilter } from '@/app/_components/category-filter';
 
-export default function Home() {
+export const revalidate = 3600; // ISR: 1時間ごとに再生成
+
+interface HomeProps {
+  searchParams: Promise<{
+    category?: string;
+  }>;
+}
+
+export default async function Home({ searchParams }: HomeProps) {
+  const { category } = await searchParams;
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const categories = await getCategories();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      {/* Hero Section */}
+      <div className="bg-gray-50 dark:bg-gray-800 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              新しいスキルを学び、キャリアを前進させましょう
+            </h1>
+
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
+              YouTube動画で学ぶオンライン講座プラットフォーム
+            </p>
+
+            {!user && (
+              <div className="flex gap-4 flex-wrap">
+                <Link
+                  href="/signup"
+                  className="inline-flex items-center px-6 py-3 text-base font-bold text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors"
+                >
+                  無料で始める
+                </Link>
+                <Link
+                  href="/login"
+                  className="inline-flex items-center px-6 py-3 text-base font-bold text-gray-900 dark:text-white border border-gray-900 dark:border-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                >
+                  ログイン
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </div>
+
+      {/* Search Section */}
+      <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="max-w-2xl mx-auto">
+            <SearchBar />
+          </div>
         </div>
-      </main>
+      </div>
+
+      {/* Courses Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Category Filter */}
+        <div className="mb-8">
+          <h2 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+            カテゴリー
+          </h2>
+          <Suspense fallback={<div>読み込み中...</div>}>
+            <CategoryFilter categories={categories} />
+          </Suspense>
+        </div>
+
+        <Suspense fallback={<CourseGridSkeleton />}>
+          <CourseList category={category} />
+        </Suspense>
+      </div>
     </div>
   );
 }

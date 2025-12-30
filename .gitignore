@@ -23,6 +23,34 @@
 # misc
 .DS_Store
 *.pem
+Thumbs.db
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# IDE - JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# IDE - Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# IDE - Fleet
+.fleet/
+
+# Editor temp files
+*.swp
+*.swo
+*~
+.vim/
 
 # debug
 npm-debug.log*
@@ -39,3 +67,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.claude
+.mcp.json

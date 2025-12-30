@@ -1,0 +1,17 @@
+{
+  "common": {
+    "appName": "MSS Course Platform",
+    "home": "Home",
+    "courses": "Courses",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "search": "Search",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit"
+  }
+}
