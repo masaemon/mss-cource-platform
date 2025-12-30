@@ -62,7 +62,7 @@ export default async function CoursePage({ params }: Props) {
   const totalVideos = course.videos?.length || 0;
   const completionPercentage = calculateProgress(totalVideos, completedCount);
 
-  const displayName = course.profiles?.email?.split('@')[0] || '不明';
+  const displayName = course.profiles?.display_name || course.profiles?.email?.split('@')[0] || '不明';
 
   // Get user role for comment permissions
   let userRole: string | undefined;

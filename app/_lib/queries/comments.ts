@@ -11,6 +11,7 @@ export async function getCourseComments(courseId: string) {
       profiles (
         id,
         email,
+        display_name,
         avatar_url,
         role
       )

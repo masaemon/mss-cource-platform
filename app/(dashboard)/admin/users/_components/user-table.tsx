@@ -4,6 +4,7 @@ import { Pagination } from './pagination';
 interface User {
   id: string;
   email: string;
+  display_name?: string | null;
   role: 'user' | 'instructor' | 'admin';
   avatar_url: string | null;
   bio: string | null;
@@ -85,7 +86,7 @@ export function UserTable({
                     </div>
                     <div className="ml-4">
                       <div className="text-sm font-medium text-gray-900">
-                        {user.email.split('@')[0]}
+                        {user.display_name || user.email.split('@')[0]}
                       </div>
                     </div>
                   </div>

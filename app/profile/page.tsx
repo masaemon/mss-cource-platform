@@ -1,6 +1,7 @@
 import { createClient } from '@/app/_lib/supabase/server';
 import { redirect } from 'next/navigation';
 import { signOut } from '@/app/_lib/actions/auth';
+import { ProfileEditForm } from '@/app/profile/_components/ProfileEditForm';
 
 export default async function ProfilePage() {
   const supabase = await createClient();
@@ -25,48 +26,10 @@ export default async function ProfilePage() {
         <div className="bg-white dark:bg-gray-800 shadow rounded-lg">
           <div className="px-4 py-5 sm:p-6">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              プロフィール
+              プロフィール編集
             </h1>
 
-            <div className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  メールアドレス
-                </label>
-                <p className="text-gray-900 dark:text-white">{profile?.email}</p>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  役割
-                </label>
-                <p className="text-gray-900 dark:text-white">
-                  {profile?.role === 'admin'
-                    ? '管理者'
-                    : profile?.role === 'instructor'
-                      ? '講師'
-                      : '一般ユーザー'}
-                </p>
-              </div>
-
-              {profile?.bio && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    自己紹介
-                  </label>
-                  <p className="text-gray-900 dark:text-white">{profile.bio}</p>
-                </div>
-              )}
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  登録日
-                </label>
-                <p className="text-gray-900 dark:text-white">
-                  {new Date(profile?.created_at).toLocaleDateString('ja-JP')}
-                </p>
-              </div>
-            </div>
+            <ProfileEditForm profile={profile} />
           </div>
 
           <div className="px-4 py-4 sm:px-6 bg-gray-50 dark:bg-gray-700 rounded-b-lg">

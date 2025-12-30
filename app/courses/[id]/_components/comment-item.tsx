@@ -12,6 +12,7 @@ interface Comment {
   profiles: {
     id: string;
     email: string;
+    display_name?: string | null;
     avatar_url: string | null;
     role: string;
   };
@@ -120,7 +121,7 @@ export function CommentItem({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="font-semibold text-gray-900 dark:text-white">
-              {comment.profiles.email.split('@')[0]}
+              {comment.profiles.display_name || comment.profiles.email.split('@')[0]}
             </span>
             {isInstructor && (
               <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-600 text-white">

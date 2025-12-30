@@ -14,13 +14,14 @@ interface CourseCardProps {
     } | null;
     profiles: {
       email: string;
+      display_name?: string | null;
     } | null;
     videos?: Array<{ count: number }> | Video[] | { count: number };
   };
 }
 
 export function CourseCard({ course }: CourseCardProps) {
-  const displayName = course.profiles?.email?.split('@')[0] || '不明';
+  const displayName = course.profiles?.display_name || course.profiles?.email?.split('@')[0] || '不明';
   const truncatedDescription =
     course.description_ja?.slice(0, 100) + '...' || '';
   const videoCount =

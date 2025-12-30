@@ -17,7 +17,7 @@ export const getPublishedCourses = cache(async (categoryId?: string) => {
       thumbnail_url,
       created_at,
       categories(id, name_ja, name_en, slug),
-      profiles!courses_instructor_id_fkey(id, email),
+      profiles!courses_instructor_id_fkey(id, email, display_name),
       videos(count)
     `)
     .eq('is_published', true)
@@ -94,7 +94,7 @@ export const searchCourses = cache(async (query?: string, categoryId?: string) =
       thumbnail_url,
       created_at,
       categories(id, name_ja, name_en, slug),
-      profiles!courses_instructor_id_fkey(id, email),
+      profiles!courses_instructor_id_fkey(id, email, display_name),
       videos(count)
     `)
     .eq('is_published', true)

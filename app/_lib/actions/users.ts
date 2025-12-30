@@ -42,3 +42,39 @@ export async function updateUserRole(
   revalidatePath('/admin/users');
   revalidatePath('/admin/dashboard');
 }
+
+export async function updateProfile(formData: FormData) {
+  const displayName = formData.get('display_name') as string;
+  const bio = formData.get('bio') as string;
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error('Unauthorized');
+  }
+
+  // display_nameのバリデーション
+  if (!displayName || displayName.trim().length === 0) {
+    throw new Error('ユーザー名を入力してください');
+  }
+
+  if (displayName.trim().length > 50) {
+    throw new Error('ユーザー名は50文字以内にしてください');
+  }
+
+  const { error } = await supabase
+    .from('profiles')
+    .update({
+      display_name: displayName.trim(),
+      bio: bio?.trim() || null,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', user.id);
+
+  if (error) throw error;
+
+  revalidatePath('/profile');
+}
