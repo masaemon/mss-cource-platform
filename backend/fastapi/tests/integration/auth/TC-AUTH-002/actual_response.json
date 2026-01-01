@@ -1,0 +1,2 @@
+{"detail":[{"type":"missing","loc":["body","email"],"msg":"Field required","input":{"display_name":"Test User","password":"password123"},"url":"https://errors.pydantic.dev/2.5/v/missing"}]}
+HTTP_STATUS:422

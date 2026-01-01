@@ -1,0 +1,6 @@
+id	name_ja	name_en	slug	integrity_status
+cat-business-003	ビジネス	Business	business	VALID
+cat-datascience-005	データサイエンス	Data Science	data-science	VALID
+cat-design-002	デザイン	Design	design	VALID
+cat-marketing-004	マーケティング	Marketing	marketing	VALID
+cat-programming-001	プログラミング	Programming	programming	VALID

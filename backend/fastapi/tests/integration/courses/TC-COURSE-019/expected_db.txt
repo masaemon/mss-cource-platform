@@ -1,0 +1,2 @@
+course_count	title_ja	instructor_id	is_published	category_id
+1	Pythonプログラミング入門	instructor-001	0	cat-programming-001

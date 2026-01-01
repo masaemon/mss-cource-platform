@@ -1,0 +1,2 @@
+video_count	title_ja	youtube_video_id	order_number	course_id
+1	Python入門 第4回	dQw4w9WgXcQ	4	course-001

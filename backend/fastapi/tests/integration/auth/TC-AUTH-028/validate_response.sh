@@ -1,0 +1,12 @@
+#!/bin/bash
+# TC-AUTH-028: Validate display_name exceeds 51 characters (HTTP 422)
+
+RESPONSE_FILE="actual_response.json"
+
+if grep -q "HTTP_STATUS:422" "$RESPONSE_FILE" 2>/dev/null; then
+    echo "✓ HTTP status 422 confirmed"
+    exit 0
+else
+    echo "✗ Expected HTTP status 422"
+    exit 1
+fi

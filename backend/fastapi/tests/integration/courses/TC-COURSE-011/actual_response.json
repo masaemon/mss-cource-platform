@@ -1,0 +1,2 @@
+{"detail":[{"type":"greater_than_equal","loc":["query","page"],"msg":"Input should be greater than or equal to 1","input":"0","ctx":{"ge":1},"url":"https://errors.pydantic.dev/2.5/v/greater_than_equal"}]}
+HTTP_STATUS:422

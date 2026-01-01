@@ -1,0 +1,2 @@
+user_count	email	display_name	role	password_is_hashed
+1	newuser@example.com	New User	user	1

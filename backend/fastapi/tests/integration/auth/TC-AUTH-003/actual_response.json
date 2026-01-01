@@ -1,0 +1,2 @@
+{"detail":[{"type":"value_error","loc":["body","email"],"msg":"value is not a valid email address: An email address must have an @-sign.","input":"invalid-email","ctx":{"reason":"An email address must have an @-sign."}}]}
+HTTP_STATUS:422

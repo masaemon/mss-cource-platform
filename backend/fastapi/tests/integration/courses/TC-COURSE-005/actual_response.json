@@ -1,0 +1,79 @@
+{
+    "data": [
+        {
+            "id": "course-001",
+            "title_ja": "\u00e3\u0192\u2020\u00e3\u201a\u00b9\u00e3\u0192\u02c6\u00e3\u201a\u00b3\u00e3\u0192\u00bc\u00e3\u201a\u00b91",
+            "title_en": "Test Course 1",
+            "description_ja": null,
+            "thumbnail_url": null,
+            "category_id": "cat-programming-001",
+            "is_published": true,
+            "created_at": "2025-12-31T12:29:56",
+            "video_count": 3,
+            "category": {
+                "id": "cat-programming-001",
+                "name_ja": "\u00e3\u0192\u2014\u00e3\u0192\u00ad\u00e3\u201a\u00b0\u00e3\u0192\u00a9\u00e3\u0192\u0178\u00e3\u0192\u00b3\u00e3\u201a\u00b0",
+                "name_en": "Programming",
+                "slug": "programming"
+            },
+            "instructor": {
+                "id": "instructor-001",
+                "email": "instructor1@example.com",
+                "display_name": "Instructor One",
+                "avatar_url": null,
+                "bio": null
+            }
+        },
+        {
+            "id": "course-002",
+            "title_ja": "\u00e3\u0192\u2020\u00e3\u201a\u00b9\u00e3\u0192\u02c6\u00e3\u201a\u00b3\u00e3\u0192\u00bc\u00e3\u201a\u00b92",
+            "title_en": "Test Course 2",
+            "description_ja": null,
+            "thumbnail_url": null,
+            "category_id": "cat-programming-001",
+            "is_published": true,
+            "created_at": "2025-12-31T12:29:56",
+            "video_count": 0,
+            "category": {
+                "id": "cat-programming-001",
+                "name_ja": "\u00e3\u0192\u2014\u00e3\u0192\u00ad\u00e3\u201a\u00b0\u00e3\u0192\u00a9\u00e3\u0192\u0178\u00e3\u0192\u00b3\u00e3\u201a\u00b0",
+                "name_en": "Programming",
+                "slug": "programming"
+            },
+            "instructor": {
+                "id": "instructor-002",
+                "email": "instructor2@example.com",
+                "display_name": "Instructor Two",
+                "avatar_url": null,
+                "bio": null
+            }
+        },
+        {
+            "id": "course-003",
+            "title_ja": "\u00e7\u00a9\u00ba\u00e3\u0081\u00ae\u00e3\u201a\u00b3\u00e3\u0192\u00bc\u00e3\u201a\u00b9",
+            "title_en": "Empty Course",
+            "description_ja": null,
+            "thumbnail_url": null,
+            "category_id": "cat-design-002",
+            "is_published": true,
+            "created_at": "2025-12-31T12:29:56",
+            "video_count": 0,
+            "category": {
+                "id": "cat-design-002",
+                "name_ja": "\u00e3\u0192\u2021\u00e3\u201a\u00b6\u00e3\u201a\u00a4\u00e3\u0192\u00b3",
+                "name_en": "Design",
+                "slug": "design"
+            },
+            "instructor": {
+                "id": "instructor-001",
+                "email": "instructor1@example.com",
+                "display_name": "Instructor One",
+                "avatar_url": null,
+                "bio": null
+            }
+        }
+    ],
+    "total": 3,
+    "page": 1,
+    "limit": 10
+}

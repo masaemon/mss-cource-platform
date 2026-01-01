@@ -1,0 +1,22 @@
+#!/bin/bash
+# TC-CATEGORY-025: Cache effectiveness test
+
+# First request (no cache)
+START1=$(python3 -c "import time; print(int(time.time() * 1000))")
+RESPONSE=$(curl -s -X GET "http://localhost:8000/api/v1/categories" \
+  -H "Content-Type: application/json" \
+  -o /dev/null
+END1=$(python3 -c "import time; print(int(time.time() * 1000))")
+TIME1=$((END1 - START1))
+
+# Second request (potentially cached)
+START2=$(python3 -c "import time; print(int(time.time() * 1000))")
+RESPONSE=$(curl -s -X GET "http://localhost:8000/api/v1/categories" \
+  -H "Content-Type: application/json" \
+  -w "\nHTTP_STATUS:%{http_code}\n" )
+END2=$(python3 -c "import time; print(int(time.time() * 1000))")
+TIME2=$((END2 - START2))
+
+echo "First request: ${TIME1}ms, Second request: ${TIME2}ms"
+
+echo "$RESPONSE" | python3 -m json.tool 2>/dev/null || echo "$RESPONSE"

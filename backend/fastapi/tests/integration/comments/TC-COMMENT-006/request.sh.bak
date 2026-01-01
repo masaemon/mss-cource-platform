@@ -1,0 +1,6 @@
+#!/bin/bash
+# TC-COMMENT-006: Unauthenticated can view comments
+
+curl -s -X GET "http://localhost:8000/api/v1/comments/courses/course-001/comments" \
+  -H "Content-Type: application/json" \
+  -w "\nHTTP_STATUS:%{http_code}\n" | python3 -m json.tool
