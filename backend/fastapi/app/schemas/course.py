@@ -1,6 +1,9 @@
 from pydantic import BaseModel, Field, HttpUrl
-from typing import Optional, List
+from typing import Optional, List, Any
 from datetime import datetime
+
+# VideoResponseは後でmodel_rebuildで解決
+VideoResponse = Any
 
 
 class CourseCreate(BaseModel):
@@ -58,6 +61,7 @@ class CourseResponse(BaseModel):
     # Relations
     category: Optional[CategoryResponse] = None
     instructor: Optional[InstructorResponse] = None
+    videos: List[VideoResponse] = []
     video_count: int = 0
 
     class Config:

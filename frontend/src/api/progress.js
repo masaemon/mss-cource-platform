@@ -1,22 +1,21 @@
 import client from './client'
 
 /**
- * ユーザーの視聴進捗を取得
- * @param {string} userId - ユーザーID
+ * ユーザーの全進捗を取得
  * @returns {Promise<array>} 視聴進捗リスト
  */
-export async function getUserProgress(userId) {
-  const response = await client.get(`/users/${userId}/progress`)
+export async function getUserProgress() {
+  const response = await client.get('/progress')
   return response.data
 }
 
 /**
  * 特定コースの視聴進捗を取得
  * @param {string} courseId - コースID
- * @returns {Promise<array>} 視聴進捗リスト
+ * @returns {Promise<object>} コース進捗詳細
  */
 export async function getCourseProgress(courseId) {
-  const response = await client.get(`/courses/${courseId}/progress`)
+  const response = await client.get(`/progress/courses/${courseId}`)
   return response.data
 }
 
@@ -27,7 +26,7 @@ export async function getCourseProgress(courseId) {
  * @returns {Promise<object>} 更新された進捗
  */
 export async function updateVideoProgress(videoId, isCompleted) {
-  const response = await client.post(`/videos/${videoId}/progress`, {
+  const response = await client.post(`/progress/videos/${videoId}`, {
     is_completed: isCompleted
   })
   return response.data
@@ -39,5 +38,5 @@ export async function updateVideoProgress(videoId, isCompleted) {
  * @returns {Promise<void>}
  */
 export async function deleteVideoProgress(videoId) {
-  await client.delete(`/videos/${videoId}/progress`)
+  await client.delete(`/progress/videos/${videoId}`)
 }

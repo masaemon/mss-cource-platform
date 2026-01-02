@@ -28,6 +28,7 @@ const playerState = ref(null)
 const error = ref(null)
 
 const videoId = ref(null)
+const isDev = import.meta.env.DEV
 
 // 動画IDを抽出
 watch(() => props.video, (newVideo) => {
@@ -187,7 +188,7 @@ defineExpose({
     </div>
 
     <!-- プレイヤー状態表示（開発用） -->
-    <div v-if="import.meta.env.DEV" class="mt-2 text-sm text-base-content/60">
+    <div v-if="isDev" class="mt-2 text-sm text-base-content/60">
       Status: {{ playerState !== null ? ['unstarted', 'ended', 'playing', 'paused', 'buffering', 'cued'][playerState + 1] : 'loading' }}
     </div>
   </div>

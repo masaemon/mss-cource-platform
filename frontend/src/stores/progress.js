@@ -39,15 +39,14 @@ export const useProgressStore = defineStore('progress', () => {
   })
 
   // Actions
-  async function fetchUserProgress(userId) {
+  async function fetchUserProgress() {
     loading.value = true
     error.value = null
 
     try {
-      const progressList = await apiGetUserProgress(userId)
-      progressList.forEach(progress => {
-        progressMap.value[progress.video_id] = progress
-      })
+      // 全コース進捗サマリーの配列が返ってくる
+      // サマリーには個別動画の進捗は含まれない
+      const progressList = await apiGetUserProgress()
       return progressList
     } catch (err) {
       error.value = err.response?.data?.detail || 'ユーザー進捗の取得に失敗しました'
@@ -62,11 +61,15 @@ export const useProgressStore = defineStore('progress', () => {
     error.value = null
 
     try {
-      const progressList = await apiGetCourseProgress(courseId)
-      progressList.forEach(progress => {
-        progressMap.value[progress.video_id] = progress
-      })
-      return progressList
+      const courseProgress = await apiGetCourseProgress(courseId)
+      // CourseProgressDetail オブジェクトが返ってくる
+      // videos 配列内の各アイテムを progressMap に保存
+      if (courseProgress.videos) {
+        courseProgress.videos.forEach(progress => {
+          progressMap.value[progress.video_id] = progress
+        })
+      }
+      return courseProgress
     } catch (err) {
       error.value = err.response?.data?.detail || 'コース進捗の取得に失敗しました'
       throw err

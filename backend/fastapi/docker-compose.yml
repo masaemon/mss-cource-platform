@@ -12,11 +12,11 @@ services:
       - ./app:/app/app
       - ./tests:/app/tests
     environment:
-      - DATABASE_URL=mysql+aiomysql://mss_user:mss_password@db:3306/mss_course_platform
+      - DATABASE_URL=mysql+aiomysql://mss_user:mss_password@db:3306/mss_course_platform?charset=utf8mb4
       - ENVIRONMENT=development
       - DEBUG=true
       - SECRET_KEY=dev-secret-key-change-in-production-min-32-chars
-      - CORS_ORIGINS=http://localhost:3000
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:5173,http://localhost:5174
     depends_on:
       db:
         condition: service_healthy
@@ -34,6 +34,7 @@ services:
       MYSQL_DATABASE: mss_course_platform
       MYSQL_USER: mss_user
       MYSQL_PASSWORD: mss_password
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - mysql_data:/var/lib/mysql
       - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql:ro

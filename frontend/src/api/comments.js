@@ -6,7 +6,7 @@ import client from './client'
  * @returns {Promise<array>} コメント一覧
  */
 export async function getCourseComments(courseId) {
-  const response = await client.get(`/courses/${courseId}/comments`)
+  const response = await client.get(`/comments/courses/${courseId}/comments`)
   return response.data
 }
 
@@ -17,7 +17,7 @@ export async function getCourseComments(courseId) {
  * @returns {Promise<object>} 作成されたコメント
  */
 export async function createComment(courseId, content) {
-  const response = await client.post(`/courses/${courseId}/comments`, {
+  const response = await client.post(`/comments/courses/${courseId}/comments`, {
     content
   })
   return response.data
@@ -53,10 +53,9 @@ export async function deleteComment(commentId) {
  * @returns {Promise<object>} 作成された返信
  */
 export async function replyToComment(courseId, parentId, content) {
-  const response = await client.post(`/courses/${courseId}/comments`, {
+  const response = await client.post(`/comments/courses/${courseId}/comments/reply`, {
     content,
-    parent_id: parentId,
-    is_instructor_reply: true
+    parent_id: parentId
   })
   return response.data
 }

@@ -79,3 +79,12 @@ export async function toggleCoursePublish(id, isPublished) {
   })
   return response.data
 }
+
+/**
+ * 講師の全コース取得（公開・非公開問わず）
+ * @returns {Promise<array>} 講師のコース一覧
+ */
+export async function getInstructorCourses() {
+  const response = await client.get('/courses/instructor/courses')
+  return response.data
+}

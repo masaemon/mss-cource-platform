@@ -1,5 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response
 from app.core.config import settings
 from app.api.v1.auth import router as auth_router
 from app.api.v1.courses import router as courses_router
@@ -16,6 +17,14 @@ app = FastAPI(
     openapi_url="/api/openapi.json"
 )
 
+# UTF-8エンコーディングを明示的に設定
+@app.middleware("http")
+async def add_utf8_header(request: Request, call_next):
+    response = await call_next(request)
+    if isinstance(response, Response):
+        response.headers["Content-Type"] = "application/json; charset=utf-8"
+    return response
+
 # CORS
 app.add_middleware(
     CORSMiddleware,
@@ -23,6 +32,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["Content-Type"],
 )
 
 # Routers

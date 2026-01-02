@@ -17,8 +17,7 @@ const formData = ref({
   description_ja: '',
   description_en: '',
   youtube_url: '',
-  youtube_video_id: '',
-  order_number: 1
+  youtube_video_id: ''
 })
 
 // 既存動画データがあれば設定
@@ -30,8 +29,17 @@ watch(() => props.video, (newVideo) => {
       description_ja: newVideo.description_ja || '',
       description_en: newVideo.description_en || '',
       youtube_url: newVideo.youtube_url || '',
-      youtube_video_id: newVideo.youtube_video_id || '',
-      order_number: newVideo.order_number || 1
+      youtube_video_id: newVideo.youtube_video_id || ''
+    }
+  } else {
+    // 新規作成時はorder_numberを含めない
+    formData.value = {
+      title_ja: '',
+      title_en: '',
+      description_ja: '',
+      description_en: '',
+      youtube_url: '',
+      youtube_video_id: ''
     }
   }
 }, { immediate: true })
@@ -129,19 +137,6 @@ function handleCancel() {
             class="textarea textarea-bordered textarea-sm h-20"
             placeholder="In this lesson..."
           ></textarea>
-        </div>
-
-        <!-- 順序番号 -->
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text font-semibold">表示順序</span>
-          </label>
-          <input
-            v-model.number="formData.order_number"
-            type="number"
-            min="1"
-            class="input input-bordered input-sm w-32"
-          />
         </div>
 
         <!-- ボタン -->

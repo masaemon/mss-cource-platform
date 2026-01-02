@@ -20,5 +20,5 @@ class Course(Base, TimestampMixin):
     # Relationships
     category = relationship("Category", backref="courses")
     instructor = relationship("Profile", backref="courses")
-    videos = relationship("Video", back_populates="course", cascade="all, delete-orphan")
+    videos = relationship("Video", back_populates="course", cascade="all, delete-orphan", order_by="Video.order_number")
     comments = relationship("CourseComment", back_populates="course", cascade="all, delete-orphan")

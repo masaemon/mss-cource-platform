@@ -2,5 +2,5 @@ Attempt 1 completed
 Attempt 2 completed
 Attempt 3 completed
 Attempt 4 completed
-{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MWQxZGE4Ni05Mzg3LTQyY2UtYTMwOC0wN2VjMTBiMjA0ZWUiLCJleHAiOjE3NjcxODU5NTYsImlhdCI6MTc2NzE4NDE1Nn0.jh7mYQnZbGlAN52Fb1QLDyqfQ9fWdKpqZA9Ts3PHbAI","token_type":"bearer","user":{"id":"71d1da86-9387-42ce-a308-07ec10b204ee","email":"ratetest4@example.com","display_name":"Rate Test 4","role":"user","avatar_url":null,"bio":null}}
+{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NWIyMTYyOS1mMzA3LTQyMTYtYjgwYy0wZWQwZWIyMTcwMDgiLCJleHAiOjE3NjczMjA5MDcsImlhdCI6MTc2NzMxOTEwN30.FopqOJCTDMv--IXVhVFoOIccKPNcCj389ABbLRDFqow","token_type":"bearer","user":{"id":"55b21629-f307-4216-b80c-0ed0eb217008","email":"ratetest4@example.com","display_name":"Rate Test 4","role":"user","avatar_url":null,"bio":null}}
 HTTP_STATUS:201

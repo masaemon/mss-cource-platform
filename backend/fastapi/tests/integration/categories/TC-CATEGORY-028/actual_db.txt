@@ -1,6 +1,6 @@
 id	slug	created_at	updated_at	timestamp_status
-cat-business-003	business	2025-12-31 12:29:08	2025-12-31 12:29:08	VALID
-cat-design-002	design	2025-12-31 12:29:08	2025-12-31 12:29:35	VALID
-cat-programming-001	programming	2025-12-31 12:29:08	2025-12-31 12:29:35	VALID
-cat-datascience-005	data-science	2025-12-31 12:29:35	2025-12-31 12:29:55	VALID
-cat-marketing-004	marketing	2025-12-31 12:29:35	2025-12-31 12:29:55	VALID
+cat-business-003	business	2026-01-02 01:58:18	2026-01-02 01:58:18	VALID
+cat-design-002	design	2026-01-02 01:58:18	2026-01-02 01:58:45	VALID
+cat-programming-001	programming	2026-01-02 01:58:18	2026-01-02 01:58:45	VALID
+cat-datascience-005	data-science	2026-01-02 01:58:46	2026-01-02 01:59:05	VALID
+cat-marketing-004	marketing	2026-01-02 01:58:46	2026-01-02 01:59:05	VALID

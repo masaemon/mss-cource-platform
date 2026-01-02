@@ -46,11 +46,27 @@ export const useCourseStore = defineStore('course', () => {
         ...params
       })
 
-      courses.value = response.courses || response
-      totalCourses.value = response.total || response.length
+      console.log('fetchCourses response:', response)
+
+      // レスポンスが配列かオブジェクトかを判定
+      if (Array.isArray(response)) {
+        courses.value = response
+        totalCourses.value = response.length
+      } else if (response && response.data) {
+        // APIレスポンスが {data: [...], total: N} の形式の場合
+        courses.value = Array.isArray(response.data) ? response.data : []
+        totalCourses.value = response.total || courses.value.length
+      } else {
+        courses.value = Array.isArray(response.courses) ? response.courses : []
+        totalCourses.value = response.total || courses.value.length
+      }
+
+      console.log('courses.value:', courses.value)
+      console.log('totalCourses:', totalCourses.value)
 
       return response
     } catch (err) {
+      console.error('fetchCourses error:', err)
       error.value = err.response?.data?.detail || 'コースの取得に失敗しました'
       throw err
     } finally {
@@ -64,6 +80,8 @@ export const useCourseStore = defineStore('course', () => {
 
     try {
       const course = await apiGetCourse(id)
+      console.log('fetchCourse response:', course)
+      console.log('Videos in course:', course.videos)
       currentCourse.value = course
       return course
     } catch (err) {
@@ -80,6 +98,12 @@ export const useCourseStore = defineStore('course', () => {
 
     try {
       const course = await apiCreateCourse(data)
+
+      // courses.valueが配列でない場合は初期化
+      if (!Array.isArray(courses.value)) {
+        courses.value = []
+      }
+
       courses.value.unshift(course)
       return course
     } catch (err) {

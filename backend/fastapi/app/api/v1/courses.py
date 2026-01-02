@@ -11,6 +11,7 @@ from app.schemas.course import (
     CourseListItem,
     PublishToggleRequest
 )
+from app.schemas.video import VideoResponse
 from app.repositories.course import CourseRepository
 from app.api.dependencies import get_current_instructor, get_current_user
 from app.models.course import Course
@@ -84,8 +85,15 @@ async def get_course(
             detail="Course not found"
         )
 
+    # videosをVideoResponseに変換
+    videos = [VideoResponse.model_validate(video) for video in course.videos] if course.videos else []
+
+    # course.__dict__からvideosを除外
+    course_dict = {k: v for k, v in course.__dict__.items() if k != 'videos'}
+
     return CourseResponse(
-        **course.__dict__,
+        **course_dict,
+        videos=videos,
         video_count=len(course.videos) if course.videos else 0
     )
 

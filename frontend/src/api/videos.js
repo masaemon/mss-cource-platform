@@ -6,7 +6,7 @@ import client from './client'
  * @returns {Promise<array>} 動画一覧
  */
 export async function getCourseVideos(courseId) {
-  const response = await client.get(`/courses/${courseId}/videos`)
+  const response = await client.get(`/videos/courses/${courseId}/videos`)
   return response.data
 }
 
@@ -27,7 +27,7 @@ export async function getVideo(videoId) {
  * @returns {Promise<object>} 作成された動画
  */
 export async function createVideo(courseId, data) {
-  const response = await client.post(`/courses/${courseId}/videos`, data)
+  const response = await client.post(`/videos/courses/${courseId}/videos`, data)
   return response.data
 }
 
@@ -58,7 +58,7 @@ export async function deleteVideo(videoId) {
  * @returns {Promise<void>}
  */
 export async function updateVideoOrder(courseId, videoIds) {
-  const response = await client.patch(`/courses/${courseId}/videos/order`, {
+  const response = await client.patch(`/videos/courses/${courseId}/videos/order`, {
     video_ids: videoIds
   })
   return response.data

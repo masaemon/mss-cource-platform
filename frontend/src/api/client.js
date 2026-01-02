@@ -5,9 +5,12 @@ import { useToast } from '@/composables/useToast'
 const client = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1',
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json; charset=utf-8',
+    'Accept': 'application/json; charset=utf-8'
   },
-  timeout: 10000 // 10秒
+  timeout: 10000, // 10秒
+  responseType: 'json',
+  responseEncoding: 'utf8'
 })
 
 // リクエストインターセプター（JWT自動付与）

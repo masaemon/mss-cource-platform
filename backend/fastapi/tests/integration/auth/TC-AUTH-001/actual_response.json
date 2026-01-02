@@ -1,8 +1,8 @@
 {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1MTA2NTMxNC0wOTgxLTQwNWQtOTNlMS00YjUyOTBmMTUxYjkiLCJleHAiOjE3NjcxODU5NDgsImlhdCI6MTc2NzE4NDE0OH0.3m9VJIIH_nylZCST9AV3MjDUjU7RnPLrAi-pIG3gqRU",
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OTQ4ZjkxNi00Mjc2LTQwMWUtODEwNS0xYTc5ZGRhNzNmMDUiLCJleHAiOjE3NjczMjA4OTksImlhdCI6MTc2NzMxOTA5OX0.Yw7H675IZkMrGoDSETiBXAdWWIWQz62bPotT-trqnKU",
     "token_type": "bearer",
     "user": {
-        "id": "51065314-0981-405d-93e1-4b5290f151b9",
+        "id": "7948f916-4276-401e-8105-1a79dda73f05",
         "email": "newuser@example.com",
         "display_name": "New User",
         "role": "user",

@@ -10,7 +10,7 @@ class VideoCreate(BaseModel):
     description_ja: Optional[str] = None
     description_en: Optional[str] = None
     youtube_url: str
-    order_number: int = Field(..., ge=1)
+    order_number: Optional[int] = Field(None, ge=1)
 
     @field_validator('youtube_url')
     @classmethod

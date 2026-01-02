@@ -60,7 +60,11 @@ async function handleSubmit(formData) {
     } else {
       // 新規作成
       const newVideo = await createVideo(courseId, formData)
+      console.log('Created video:', newVideo)
+      console.log('Videos before push:', videos.value.length)
       videos.value.push(newVideo)
+      console.log('Videos after push:', videos.value.length)
+      console.log('All videos:', videos.value)
       success('動画を追加しました')
     }
     closeForm()

@@ -67,14 +67,29 @@ async function handleSubmit() {
       await courseStore.updateCourse(courseId, formData.value)
       success('コースを更新しました')
     } else {
+      console.log('Creating course with data:', formData.value)
       const newCourse = await courseStore.createCourse(formData.value)
-      success('コースを作成しました')
-      router.push(`/instructor/courses/${newCourse.id}/edit`)
+      console.log('Course created successfully:', newCourse)
+
+      if (!newCourse || !newCourse.id) {
+        console.error('Invalid course response:', newCourse)
+        throw new Error('コース作成のレスポンスが不正です')
+      }
+
+      success('コースを作成しました。動画を追加するには、ダッシュボードから編集してください。')
+      console.log('Redirecting to dashboard')
+
+      // ダッシュボードにリダイレクト（シンプルで確実）
+      setTimeout(() => {
+        router.push('/instructor/dashboard')
+      }, 1500)
       return
     }
   } catch (err) {
+    console.error('Failed to save course - Full error:', err)
+    console.error('Error response:', err.response)
+    console.error('Error message:', err.message)
     showError(isEditMode.value ? 'コースの更新に失敗しました' : 'コースの作成に失敗しました')
-    console.error('Failed to save course:', err)
   } finally {
     submitting.value = false
   }

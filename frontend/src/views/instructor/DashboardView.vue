@@ -2,11 +2,10 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
-import { useCourseStore } from '@/stores/course'
+import { getInstructorCourses } from '@/api/courses'
 
 const router = useRouter()
 const authStore = useAuthStore()
-const courseStore = useCourseStore()
 
 const myCourses = ref([])
 const loading = ref(true)
@@ -18,11 +17,9 @@ onMounted(async () => {
   }
 
   try {
-    const response = await courseStore.fetchCourses({ limit: 100 })
-    const allCourses = response.courses || response
-    myCourses.value = allCourses.filter(
-      course => course.instructor_id === authStore.user.id
-    )
+    // 講師専用APIを使用（公開・非公開問わず全てのコースを取得）
+    myCourses.value = await getInstructorCourses()
+    console.log('Instructor courses:', myCourses.value)
   } catch (err) {
     console.error('Failed to fetch courses:', err)
   } finally {
